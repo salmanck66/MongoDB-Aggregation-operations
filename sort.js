@@ -7,7 +7,7 @@ async function runAggregation() {
     await client.connect();
     console.log('Connected to the database');
     const collection = client.db().collection('persons');
-    const pipeline = [{$count:"inactiveCount"}]
+    const pipeline = [{$sort:{na:1}},{$limit:10}]
     const result = await collection.aggregate(pipeline).toArray();
     console.log(result);
   } finally {
